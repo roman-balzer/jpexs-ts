@@ -59,6 +59,11 @@ interface Callbacks {
 const buildParameters = (options: Options) => {
   const params = ['-jar', path.resolve(__dirname, '../../bin/ffdec.jar')]
 
+  if (options.selectClass && options.selectClass.length) {
+    params.push('-selectclass')
+    params.push(options.selectClass.join(','))
+  }
+
   if (options.formats && options.formats.length) {
     params.push('-format')
     params.push(options.formats.join(','))
@@ -69,14 +74,10 @@ const buildParameters = (options: Options) => {
     params.push(options.items.join(','))
   }
 
-  if (options.selectClass && options.selectClass.length) {
-    params.push('-selectclass')
-    params.push(options.selectClass.join(','))
-  }
-
   params.push(options.output)
   params.push(options.file)
 
+  console.log('🚀TCL ~ file: decompile.ts ~ line 82 ~ buildParameters ~ params', params)
   return params
 }
 
