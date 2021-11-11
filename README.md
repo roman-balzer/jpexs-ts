@@ -17,142 +17,142 @@ Works only export export tool
 
 Example:
 
-```js
-const jpexs = require( 'jpexs-ts' );
+```ts
+import { decompile } from 'jpexs-ts'
 
-jpexs.export( {
-  file: 'path/to/swf/file',
-  output: 'path/to/output/dir',
-  items: [ jpexs.ITEM.FONT, ... ],
-  formats: [ jpexs.FORMAT.FONT.WOFF, ... ],
-  silence: false // optional. if set to `true`, there's no console log.
-}, function( err ) {
-  if ( err ) {
-    console.log( 'Error: ', err.message );
-  } else {
-    console.log( 'DONE!' );
+decompile(
+  {
+    file: 'path/to/swf/file',
+    output: 'path/to/output/dir',
+    items: [ 'script', ... ],
+    formats: [ 'script:as', ... ],
+  },
+  {
+    onClose: () => console.log('Finished '),
+    onError: err => console.error("Error:", err),
+    onStdout: data => console.log("Data:", data),
   }
-} );
+);
 ```
 
 ## Items
 
-- `jpexs.ITEM.SCRIPT`
+- `script`
   Scripts (Default format: ActionScript source)
-- `jpexs.ITEM.IMAGE`
+- `image`
   Images (Default format: PNG/JPEG)
-- `jpexs.ITEM.SHAPE`
+- `shape`
   Shapes (Default format: SVG)
-- `jpexs.ITEM.MORPHSHAPE`
+- `morphshape`
   MorphShapes (Default format: SVG)
-- `jpexs.ITEM.MOVIE`
+- `movie`
   Movies (Default format: FLV without sound)
-- `jpexs.ITEM.FONT`
+- `font`
   Fonts (Default format: TTF)
-- `jpexs.ITEM.FRAME`
+- `frame`
   Frames (Default format: PNG)
-- `jpexs.ITEM.SPRITE`
+- `sprite`
   Sprites (Default format: PNG)
-- `jpexs.ITEM.BUTTON`
+- `button`
   Buttons (Default format: PNG)
-- `jpexs.ITEM.SOUND`
+- `sound`
   Sounds (Default format: MP3/WAV/FLV only sound)
-- `jpexs.ITEM.BINARY`
+- `binaryData`
   Binary data (Default format: Raw data)
-- `jpexs.ITEM.TEXT`
+- `text`
   Texts (Default format: Plain text)
-- `jpexs.ITEM.FLA`
+- `fla`
   Everything to FLA compressed format
-- `jpexs.ITEM.ALL`
+- `all`
   Every resource (but not FLA)
 
-## FORMATS
+## Formats
 
 - script
-  - `jpexs.FORMAT.SCRIPT.AS`
+  - `script:as`
     ActionScript source
-  - `jpexs.FORMAT.SCRIPT.HEX`
+  - `script:hex`
     ActionScript Hex only
-  - `jpexs.FORMAT.SCRIPT.PCODE`
+  - `script:pcode`
     ActionScript P-code
-  - `jpexs.FORMAT.SCRIPT.PCODEHEX`
+  - `script:pcodehex`
     ActionScript P-code with hex
 - shape
-  - `jpexs.FORMAT.SHAPE.SVG`
+  - `shape:svg`
     SVG format for Shapes
-  - `jpexs.FORMAT.SHAPE.BMP`
+  - `shape:bmp`
     BMP format for Shapes
-  - `jpexs.FORMAT.SHAPE.PNG`
+  - `shape:png`
     PNG format for Shapes
-  - `jpexs.FORMAT.SHAPE.CANVAS`
+  - `shape:canvas`
     HTML5 Canvas format for Shapes
 - morph shape
-  - `jpexs.FORMAT.MORPHSHAPE.SVG`
+  - `morphshape:svg`
     SVG format for MorphShapes
-  - `jpexs.FORMAT.MORPHSHAPE.CANVAS`
+  - `morphshape:canvas`
     HTML5 Canvas format for MorphShapes
 - frame
-  - `jpexs.FORMAT.FRAME.BMP`
+  - `frame:bmp`
     BMP format for Frames
-  - `jpexs.FORMAT.FRAME.PNG`
+  - `frame:png`
     PNG format for Frames
-  - `jpexs.FORMAT.FRAME.GIF`
+  - `frame:gif`
     GIF format for Frames
-  - `jpexs.FORMAT.FRAME.PDF`
+  - `frame:pdf`
     PDF format for Frames
-  - `jpexs.FORMAT.FRAME.AVI`
+  - `frame:avi`
     AVI format for Frames
-  - `jpexs.FORMAT.FRAME.SVG`
+  - `frame:svg`
     SVG format for Frames
-  - `jpexs.FORMAT.FRAME.CANVAS`
+  - `frame:canvas`
     HTML5 Canvas format for Frames
 - sprite
-  - `jpexs.FORMAT.SPRITE.PNG`
+  - `sprite:png`
     PNG format for Sprites
-  - `jpexs.FORMAT.SPRITE.GIF`
+  - `sprite:gif`
     GIF format for Sprites
-  - `jpexs.FORMAT.SPRITE.AVI`
+  - `sprite:avi`
     AVI format for Sprites
-  - `jpexs.FORMAT.SPRITE.SVG`
+  - `sprite:svg`
     SVG format for Sprites
-  - `jpexs.FORMAT.SPRITE.PDF`
+  - `sprite:pdf`
     PDF format for Sprites
-  - `jpexs.FORMAT.SPRITE.BMP`
+  - `sprite:bmp`
     BMP format for Sprites
-  - `jpexs.FORMAT.SPRITE.CANVAS`
+  - `sprite:canvas`
     HTML5 Canvas format for Sprites
 - button
-  - `jpexs.FORMAT.BUTTON.PNG`
+  - `button:png`
     PNG format for Buttons
-  - `jpexs.FORMAT.BUTTON.SVG`
+  - `button:svg`
     SVG format for Buttons
-  - `jpexs.FORMAT.BUTTON.BMP`
+  - `button:bmp`
     BMP format for Buttons
 - image
-  - `jpexs.FORMAT.IMAGE.BMP`
+  - `image:bmp`
     BMP format for Images
-  - `jpexs.FORMAT.IMAGE.PNG`
+  - `image:png`
     PNG format for Images
-  - `jpexs.FORMAT.IMAGE.JPEG`
+  - `image:jpeg`
     JPEG format for Images
-  - `jpexs.FORMAT.IMAGE.ALL`
+  - `image:png_gif_jpeg`
     PNG/GIF/JPEG format for Images
 - text
-  - `jpexs.FORMAT.TEXT.SVG`
+  - `text:svg`
     SVG format for Texts
-  - `jpexs.FORMAT.TEXT.PLAIN`
+  - `text:plain`
     Plain text format for Texts
-  - `jpexs.FORMAT.TEXT.FORMATTED`
+  - `text:formatted`
     Formatted text format for Texts
 - font
-  - `jpexs.FORMAT.FONT.TTF`
+  - `font:ttf`
     TTF format for Fonts
-  - `jpexs.FORMAT.FONT.WOFF`
+  - `font:woff`
     WOFF format for Fonts
 - sound
-  - `jpexs.FORMAT.SOUND.FLV`
+  - `sound.flv`
     FLV format for Sounds
-  - `jpexs.FORMAT.SOUND.WAV`
+  - `sound.wav`
     WAV format for Sounds
-  - `jpexs.FORMAT.SOUND.ALL`
+  - `sound.mp3_wav_flv`
     MP3/WAV/FLV format for Sounds
