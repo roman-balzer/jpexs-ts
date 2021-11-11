@@ -77,7 +77,6 @@ const buildParameters = (options: Options) => {
   params.push(options.output)
   params.push(options.file)
 
-  console.log('🚀TCL ~ file: decompile.ts ~ line 82 ~ buildParameters ~ params', params)
   return params
 }
 
