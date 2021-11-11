@@ -57,7 +57,7 @@ interface Callbacks {
 }
 
 const buildParameters = (options: Options) => {
-  const params = ['-jar', path.resolve(process.cwd(), './bin/ffdec.jar')]
+  const params = ['-jar', path.resolve(__dirname, '../../bin/ffdec.jar')]
 
   if (options.formats && options.formats.length) {
     params.push('-format')
