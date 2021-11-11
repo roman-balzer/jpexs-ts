@@ -26,6 +26,7 @@ decompile(
     output: 'path/to/output/dir',
     items: [ 'script', ... ],
     formats: [ 'script:as', ... ],
+    selectClass: ['com.++']
   },
   {
     onClose: () => console.log('Finished '),
@@ -34,6 +35,13 @@ decompile(
   }
 );
 ```
+
+## selectClass
+  To be able to export only specific class, the selectClass option can be used.
+  - `com.MyClass` - export only com.MyClass
+  - `com.+` (all classes)
+  - `com.MyClass,com.MyClass2` (multiple classes)
+  - `com.++` (all classes and subclasses)
 
 ## Items
 
