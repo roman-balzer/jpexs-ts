@@ -6,6 +6,7 @@ Extract resources from SWF using open source jpexs jar library
 
 - `NodeJS` v6.\*
 - `Java` v8.\*
+  - works at least until version 18.0.1.1
 
 ## Installation
 
