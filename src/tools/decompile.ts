@@ -95,4 +95,9 @@ export const decompile = (options: Options, callbacks: Callbacks) => {
   javaProccess.stdout.on('data', (data: Buffer) => callbacks.onStdout(data.toString('utf8')))
   javaProccess.stderr.on('data', (data: Buffer) => callbacks.onError(data.toString('utf8')))
   javaProccess.on('close', () => callbacks.onClose())
+  javaProccess.on('error', (error: Error) => {
+    if (error.message.includes('ENOENT')) {
+      callbacks.onError('Java Development Kit not found. Please install it.')
+    }
+  })
 }
